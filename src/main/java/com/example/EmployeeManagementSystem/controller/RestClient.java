@@ -19,7 +19,7 @@ public class RestClient {
 
     public static void main(String[] args) {
         callGetAllEmployees();
-        callGetUserById();
+        callGetEmployeeById();
         callCreateEmployee();
         callUpdateEmployee();
         callDeleteEmployee();
@@ -36,9 +36,9 @@ public class RestClient {
     }
 
 
-    private static void  callGetUserById() {
+    private static void  callGetEmployeeById() {
         Map<String, Integer> param = new HashMap<>();
-        param.put("id", 3);
+        param.put("id", 2);
 
         Employee employee = restTemplate.getForObject(GET_EMPLOYEE_BY_ID, Employee.class, param);
         System.out.println(employee.getFirstName());
@@ -54,8 +54,8 @@ public class RestClient {
 
     private static void callUpdateEmployee() {
         Map < String, String > params = new HashMap < String, String > ();
-        params.put("id", "1");
-        Employee updatedEmployee = new Employee("admin123", "admin123", "admin123@gmail.com");
+        params.put("id", "4");
+        Employee updatedEmployee = new Employee("Van", "Pelt", "pelt@gmail.com");
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.put(UPDATE_EMPLOYEE, updatedEmployee, params);
     }

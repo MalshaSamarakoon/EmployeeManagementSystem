@@ -14,7 +14,7 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-private EmployeeRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
 
     // GET_ALL_EMPLOYEES
     @GetMapping
@@ -25,6 +25,7 @@ private EmployeeRepository employeeRepository;
     // GET_EMPLOYEE_BY_ID
     @GetMapping("/{id}")
     public Employee getEmployeeById(@PathVariable (value = "id") long employeeId){
+
         return this.employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException("Employee does not exist"));
     }
 
@@ -46,12 +47,12 @@ private EmployeeRepository employeeRepository;
         return this.employeeRepository.save(existingEmployee);
     }
 
-
     // DELETE_EMPLOYEE
     @DeleteMapping("/{id}")
     public ResponseEntity<Employee> deleteEmployee(@PathVariable ("id") long employeeId){
         Employee existingEmployee = this.employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException(" Employee does not exist"));
-this.employeeRepository.delete(existingEmployee);
-return  ResponseEntity.ok().build();
+        this.employeeRepository.delete(existingEmployee);
+
+        return  ResponseEntity.ok().build();
     }
 }
