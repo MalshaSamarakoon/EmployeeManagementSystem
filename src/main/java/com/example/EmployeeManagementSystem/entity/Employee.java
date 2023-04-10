@@ -1,5 +1,8 @@
 package com.example.EmployeeManagementSystem.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import lombok.Builder;
+
 import javax.persistence.*;
 
 @Entity

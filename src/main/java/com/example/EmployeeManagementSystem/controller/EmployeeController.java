@@ -24,7 +24,7 @@ public class EmployeeController {
 
     // GET_EMPLOYEE_BY_ID
     @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable (value = "id") long employeeId){
+    public Employee getEmployeeById(@PathVariable (value = "id") String employeeId){
 
         return this.employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException("Employee does not exist"));
     }
@@ -37,7 +37,7 @@ public class EmployeeController {
 
     // UPDATE_EMPLOYEE
     @PutMapping("{id}")
-    public  Employee updateEmployee(@RequestBody Employee employee, @PathVariable ("id") long employeeId){
+    public  Employee updateEmployee(@RequestBody Employee employee, @PathVariable ("id") String employeeId){
         Employee existingEmployee = this.employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException(" Employee does not exist"));
 
         existingEmployee.setFirstName(employee.getFirstName());
@@ -49,7 +49,7 @@ public class EmployeeController {
 
     // DELETE_EMPLOYEE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Employee> deleteEmployee(@PathVariable ("id") long employeeId){
+    public ResponseEntity<Employee> deleteEmployee(@PathVariable ("id") String employeeId){
         Employee existingEmployee = this.employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException(" Employee does not exist"));
         this.employeeRepository.delete(existingEmployee);
 
